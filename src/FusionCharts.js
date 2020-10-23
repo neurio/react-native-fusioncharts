@@ -19,7 +19,7 @@ export default class ReactNativeFusionCharts extends Component {
     this.oldOptions = null;
     this.gestureHandlers = PanResponder.create({
       onPanResponderTerminationRequest: () => false,
-      onStartShouldSetPanResponder: (evt, gestureState) => false,
+      onStartShouldSetPanResponder: (evt, gestureState) => true,
       onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
       onMoveShouldSetPanResponder: (evt, gestureState) => true,
       onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
@@ -34,6 +34,7 @@ export default class ReactNativeFusionCharts extends Component {
       },
       onPanResponderRelease: (evt, gestureState) => {
         // Panresponder Release
+        return true;
       },
     });
   }
