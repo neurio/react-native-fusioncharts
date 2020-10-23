@@ -19,7 +19,7 @@ export default class ReactNativeFusionCharts extends Component {
     this.oldOptions = null;
     this.gestureHandlers = PanResponder.create({
       onPanResponderTerminationRequest: () => false,
-      onStartShouldSetPanResponder: (evt, gestureState) => true,
+      onStartShouldSetPanResponder: (evt, gestureState) => false,
       onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
       onMoveShouldSetPanResponder: (evt, gestureState) => true,
       onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
@@ -430,7 +430,7 @@ export default class ReactNativeFusionCharts extends Component {
   render() {
     if (this.state.usePanresponder) {
       return (
-        <View style={this.resolveChartStyles()}>
+        <View style={this.resolveChartStyles()} {...this.gestureHandlers.panHandlers}>
           <WebView
             originWhitelist={['*']}
             useWebkit
@@ -446,7 +446,6 @@ export default class ReactNativeFusionCharts extends Component {
             mixedContentMode="compatibility"
             scrollEnabled={false}
             automaticallyAdjustContentInsets
-            {...this.gestureHandlers}
           />
         </View>
       );
